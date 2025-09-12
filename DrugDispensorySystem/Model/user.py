@@ -1,53 +1,23 @@
-class User:
-    def __init__(self, id, username, full_name, role, password):
-        self._id = id
-        self._username = username
-        self._full_name = full_name
-        self._role = role          # Role object
-        self._password = password
+from enum import Enum
 
-    @property
-    def id(self):
-        return self._id
+from pydantic import BaseModel, Field
 
-    @id.setter
-    def id(self, value):
-        self._id = value
 
-    @property
-    def username(self):
-        return self._username
+class UserRole(str, Enum):
+    DOCTOR = "doctor"
+    PHARMACIST = "pharmacist"
 
-    @username.setter
-    def username(self, value):
-        self._username = value
+class UserIn(BaseModel):
+    username: str
+    full_name: str
+    role: UserRole
+    password: str
 
-    @property
-    def full_name(self):
-        return self._full_name
+class UserOut(BaseModel):
+    id: str = Field(..., alias="_id")
+    username: str
+    full_name: str
+    role: UserRole
 
-    @full_name.setter
-    def full_name(self, value):
-        self._full_name = value
-
-    @property
-    def role(self):
-        return self._role
-
-    @role.setter
-    def role(self, value):
-        self._role = value
-
-    @property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, value):
-        self._password = value
-
-    def __str__(self):
-        return (
-            f"User(id={self.id}, username= {self.username}, full_name= {self.full_name}, "
-            f"role={self.role}, password='****')"
-        )
+    class Config:
+        allow_population_by_field_name = True

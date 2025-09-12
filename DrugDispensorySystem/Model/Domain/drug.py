@@ -1,6 +1,3 @@
-
-
-
 class Drug:
     def __init__(self, id, name, quantity, drug_type, days_to_use):
         self._id = id

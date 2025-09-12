@@ -8,3 +8,7 @@ class DrugType(Enum):
     INJECTION = "Injection"
     INHALER = "Inhaler"
     OTHERS = "Others"
+
+class UserRole(Enum):
+        DOCTOR = "doctor"
+        PHARMACIST = "pharmacist"
