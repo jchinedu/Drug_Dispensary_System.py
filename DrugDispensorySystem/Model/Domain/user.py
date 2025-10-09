@@ -6,7 +6,7 @@ class User:
         self._id = id
         self._username = username
         self._full_name = full_name
-        self._role = role          # Role object
+        self._role = role
         self._password = password
 
     @property
