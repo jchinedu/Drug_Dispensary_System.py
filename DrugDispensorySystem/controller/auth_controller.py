@@ -1,14 +1,16 @@
-# DrugDispensorySystem/controller/auth_controller.py
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from DrugDispensorySystem.service.auth_service import AuthService
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 class RegisterRequest(BaseModel):
-    username: str
-    password: str
+    name: str = Field(..., min_length=2, max_length=50)
+    username: str = Field(..., min_length=3, max_length=20)
+    email: str = Field(..., min_length=3, max_length=50)
+    password: str = Field(..., min_length=6)
+    confirm_password: str = Field(..., min_length=6)
     role: str
 
 
